@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xmlns="http://www.w3.org/2001/vxml">
+
+  <meta name="maintainer" content="nicolajnyvang@gmail.com"/>
+
+
+  <form id="MainMenu">
+    <field name="WaysOfContact">
+      <prompt>
+        Welcome to my electronic business card.
+      </prompt>
+      <prompt>
+        You must say the name of the information you need.
+      </prompt>d
+      <prompt>
+        For example. Say e.mail. for email information
+      </prompt>
+      <prompt> 
+        Which kind of contactinfo, are you interested in ?
+      </prompt>
+
+    <!-- Define answers / menuitems  -->
+    <grammar xml:lang="en-us" root = "meansofcontact">
+
+			<rule id="meansofcontact">
+					<one-of>
+							<item> website </item>
+							<item> e-mail </item>
+							<item> phone </item>
+							<item> linked-in </item>
+							<item> help </item>
+              <item> exit </item>
+					</one-of>
+			 </rule>
+    </grammar>
+
+    <!-- If scilence -->
+    <noinput>
+        Talk to me, please.  Here, have another try.
+        <reprompt/>
+    </noinput>
+
+    <!-- If != item in meansofcontact / grammar. -->
+    <nomatch>
+        You can´t contact me in that way...  Please try again.
+        <reprompt/>
+    </nomatch>
+  </field>
+
+  <!-- Checks the "WaysOfContact" value against each of the valid values. -->
+  <filled namelist="WaysOfContact">
+    <if cond="WaysOfContact == 'website'">
+       <prompt>
+        That sounded like website. 
+        Here is the informaton.
+      </prompt>
+       <prompt>
+        My domain is. wpo.dk.
+      </prompt>
+			<prompt>
+        Thats. w. p. o.  dot. d. k.
+      </prompt>
+       <prompt>
+        Got it?
+      </prompt>
+			<prompt>
+        Thats. w. p. o. dot. d k.
+      </prompt>	
+			<prompt>
+        Enjoy.
+      </prompt>						
+    <elseif cond="WaysOfContact == 'e-mail'"/>
+      <prompt>
+        nicolajnyvang@gmail.com
+      </prompt>
+			<prompt>
+        Thats. n.. i.. c.. o.. l.. a.. j.. n.. y.. v.. a.. n.. g..  at.  gmail.  dot. com.
+      </prompt>		
+    <elseif cond="WaysOfContact == 'phone'"/>
+      <prompt>
+        That sounded like phone. 
+        Here is the informaton.
+      </prompt>
+      <prompt>
+        Call me at.
+      </prompt>
+			<prompt>
+        60. 65. 46. 27.
+      </prompt>
+			<prompt>
+        Thats. 6. 0. 6. 5. 4. 6. 2. 7.
+      </prompt>
+    <elseif cond="WaysOfContact == 'linked-in'"/>
+      <prompt>
+        That sounded like linked-in. 
+        Here is the informaton.
+      </prompt>
+      <prompt>
+        da.linked-in.com/in/ccnn.
+      </prompt>
+    <elseif cond="WaysOfContact == 'help'"/>
+      <prompt>
+        That sounded like help. 
+      </prompt>
+      <prompt>
+        Welcome to the help menu.
+      </prompt>  
+      <prompt>
+        You have the following options:
+      </prompt>  
+      <prompt>
+        Website.
+      </prompt>  
+      <prompt>
+        E-mail.
+      </prompt>  
+      <prompt>
+        Phone.
+      </prompt>  
+      <prompt>
+        Linked In.
+      </prompt>  
+      <prompt>
+        Exit.
+      </prompt>  
+		 <elseif cond="WaysOfContact == 'exit'"/>
+      <prompt>
+        Thank you for using my electronic business card.
+      </prompt>
+      <prompt>
+        This application will now terminate.
+      </prompt>
+      <prompt>
+        Bye. Bye.
+      </prompt>	
+    <else/>
+      <prompt>
+       Hmm.. i didnt quite recognize your answer. Sorry
+      </prompt>
+      <prompt>
+       Please. Stop mumbeling
+      </prompt>
+    </if>	
+  </filled>
+  </form>
+</vxml>
